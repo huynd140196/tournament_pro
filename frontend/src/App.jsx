@@ -45,7 +45,7 @@ function App() {
                     Huế.
                   </p>
                 </header>
-                <TournamentList />
+                {/*<TournamentList />*/}
               </main>
             }
           />

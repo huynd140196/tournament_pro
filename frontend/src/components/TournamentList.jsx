@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Users, Calendar } from "lucide-react";
+import { Users, Calendar } from "@material-tailwind/react";
 
 const TournamentList = () => {
   const [tournaments, setTournaments] = useState([]);

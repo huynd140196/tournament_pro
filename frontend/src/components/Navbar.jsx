@@ -1,79 +1,130 @@
-import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { LogIn, Menu } from "lucide-react";
+import React from "react";
+import {
+  Navbar,
+  MobileNav,
+  Typography,
+  Button,
+  IconButton,
+} from "@material-tailwind/react";
+import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = ({ isLoggedIn, onLogout }) => {
+export function StickyNavbar({ isLoggedIn, onLogout }) {
+  const [openNav, setOpenNav] = React.useState(false);
+  const [openDropdown, setOpenDropdown] = React.useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-  const [showDropdown, setShowDropdown] = useState(false);
 
-  const isActive = (path) => location.pathname === path;
+  React.useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpenNav(false),
+    );
+  }, []);
 
-  const handleLogoutClick = () => {
+  const handleLogout = () => {
     onLogout();
-    setShowDropdown(false);
+    setOpenDropdown(false);
     navigate("/");
   };
 
   return (
-    <div className="w-full sticky top-0 z-50 backdrop-blur bg-white/80 border-b border-slate-200">
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+    <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
+      <div className="flex items-center justify-between text-blue-gray-900">
         {/* Logo */}
-        <Link to="/" className="flex flex-col leading-none">
-          <span className="text-lg font-black text-slate-900 tracking-tight">
-            Material
-          </span>
-          <span className="text-lg font-black text-blue-600 -mt-1 tracking-tight">
-            Tailwind
-          </span>
+        <Link to="/">
+          <Typography className="cursor-pointer py-1.5 font-medium">
+            Material Tailwind
+          </Typography>
         </Link>
 
-        {/* Right side */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
+          {/* Auth */}
           {isLoggedIn ? (
             <div className="relative">
               <button
-                onClick={() => setShowDropdown(!showDropdown)}
-                className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 transition px-2 py-1 rounded-full"
+                onClick={() => setOpenDropdown(!openDropdown)}
+                className="flex items-center gap-2"
               >
                 <img
                   src="https://docs.material-tailwind.com/img/face-1.jpg"
                   alt="avatar"
-                  className="w-9 h-9 rounded-full object-cover"
+                  className="w-9 h-9 rounded-full"
                 />
-                <span className="hidden sm:block text-sm font-semibold text-slate-700">
-                  Admin
-                </span>
               </button>
 
-              {showDropdown && (
-                <div className="absolute right-0 mt-2 w-44 bg-white border border-slate-200 rounded-xl shadow-lg p-2">
+              {openDropdown && (
+                <div className="absolute right-0 mt-2 w-40 bg-white shadow-md rounded-lg p-2">
                   <button
-                    onClick={handleLogoutClick}
-                    className="w-full flex items-center gap-2 px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 rounded-lg"
+                    onClick={handleLogout}
+                    className="w-full text-left px-3 py-2 text-red-600 hover:bg-red-50 rounded-md"
                   >
-                    <LogIn size={16} /> Logout
+                    Logout
                   </button>
                 </div>
               )}
             </div>
           ) : (
-            <Link
-              to="/login"
-              className="text-sm font-bold text-slate-800 hover:text-blue-600 transition"
-            >
-              LOGIN
+            <Link to="/login">
+              <Button variant="text" size="sm">
+                Log In
+              </Button>
             </Link>
           )}
 
-          {/* Mobile menu icon */}
-          <button className="lg:hidden text-slate-700 hover:text-blue-600">
-            <Menu size={22} />
-          </button>
+          {/* Mobile button */}
+          <IconButton
+            variant="text"
+            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+            ripple={false}
+            onClick={() => setOpenNav(!openNav)}
+          >
+            {openNav ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                className="h-6 w-6"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
+          </IconButton>
         </div>
       </div>
-    </div>
-  );
-};
 
-export default Navbar;
+      {/* Mobile Nav */}
+      <MobileNav open={openNav}>
+        {!isLoggedIn ? (
+          <Link to="/login">
+            <Button fullWidth variant="text" size="sm">
+              Log In
+            </Button>
+          </Link>
+        ) : (
+          <Button fullWidth color="red" size="sm" onClick={handleLogout}>
+            Logout
+          </Button>
+        )}
+      </MobileNav>
+    </Navbar>
+  );
+}

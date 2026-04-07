@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 
-export function StickyNavbar({ isLoggedIn, onLogout }) {
+export function Navbar({ isLoggedIn, onLogout }) {
   const [openNav, setOpenNav] = React.useState(false);
   const [openDropdown, setOpenDropdown] = React.useState(false);
   const navigate = useNavigate();

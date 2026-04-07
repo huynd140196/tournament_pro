@@ -5,7 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { StickyNavbar } from "./components/StickyNavbar";
+import Navbar from "./components/NavBar";
 import TournamentList from "./components/TournamentList";
 import LoginPage from "./pages/LoginPage"; // Chúng ta sẽ đổi tên LoginForm thành LoginPage
 
@@ -28,7 +28,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-slate-50">
-        <StickyNavbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+        <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 
         <Routes>
           {/* Trang chủ hiển thị danh sách giải đấu */}

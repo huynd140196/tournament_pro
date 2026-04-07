@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-#^igxll8flr4(4rdq%*m%gkms4#3yj35w2vb4xn9f6uenu7)dg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'tournament-backend-ymj8.onrender.com', 
+    '127.0.0.1', 
+    'localhost',
+    '.onrender.com',
+]
 
 
 # Application definition

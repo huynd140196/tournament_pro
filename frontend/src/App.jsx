@@ -28,7 +28,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-slate-50">
-        <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+        {/*<Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />*/}
 
         <Routes>
           {/* Trang chủ hiển thị danh sách giải đấu */}

@@ -9,7 +9,7 @@ const TournamentList = () => {
   useEffect(() => {
     // Gọi đến API Django đã chạy ở port 8000
     axios
-      .get("http://127.0.0.1:8000/tournaments/api/list/")
+      .get("https://tournament-backend-ymj8.onrender.com/tournaments/api/list/")
       .then((response) => {
         setTournaments(response.data);
         setLoading(false);

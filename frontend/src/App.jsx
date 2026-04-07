@@ -28,7 +28,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-slate-50">
-        {/*<StickyNavbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />*/}
+        <StickyNavbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 
         <Routes>
           {/* Trang chủ hiển thị danh sách giải đấu */}
@@ -45,7 +45,7 @@ function App() {
                     Huế.
                   </p>
                 </header>
-                {/*<TournamentList />*/}
+                <TournamentList />
               </main>
             }
           />

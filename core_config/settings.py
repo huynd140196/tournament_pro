@@ -64,6 +64,12 @@ CORS_ALLOWED_ORIGINS = [
     "https://tournament-pro-client.onrender.com",
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
 ROOT_URLCONF = 'core_config.urls'
 
 TEMPLATES = [

@@ -5,7 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { StickyNavbar } from "./components/StickyNavbar";
 import TournamentList from "./components/TournamentList";
 import LoginPage from "./pages/LoginPage"; // Chúng ta sẽ đổi tên LoginForm thành LoginPage
 

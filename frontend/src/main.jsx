@@ -6,8 +6,6 @@ import { ThemeProvider } from "@material-tailwind/react"; // Kiểm tra dòng n�
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <App />
   </React.StrictMode>,
 );
